@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INVENTORY MANAGEMENT</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/product.css') }}">
+</head>
+<body>
+    <div class="page">
+        <!-- Header Navigation -->
+        <div class="header-footer">
+            <div class="nav-links">
+                <a href="/" class="active">Manage Products</a>
+                <a href="/locations">Manage Locations</a>
+                <a href="movements">Manage Movements</a>
+                <a href="/report">View Report</a>
+            </div>
+        </div>
+
+        <!-- Title & Subtitle -->
+        <div class="title-section">
+            <h1>INVENTORY MANAGEMENT</h1>
+            <h2>PRODUCT</h2>
+        </div>
+
+        <!-- Product Section -->
+        <div class="product-section">
+            <!-- Total Products Count (above the table) -->
+            <div class="total-display">
+                Total Products: <span id="total-products">0</span>
+            </div>
+
+            <!-- Product Table -->
+            <div class="table-container">
+                <table id="product-table">
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- JS Injected Rows -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Floating Add Button (bottom right) -->
+        <button class="add-product-fab" id="open-add-modal">+</button>
+
+        <!-- Add Product Modal -->
+        <div class="modal" id="add-modal">
+            <div class="modal-content">
+                <h3>Add Product</h3>
+                <input type="text" id="add-product-name" placeholder="Enter product name">
+                <div class="modal-buttons">
+                    <button id="add-product-btn">Add</button>
+                    <button class="cancel-btn" onclick="closeModal('add-modal')">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Product Modal -->
+        <div class="modal" id="edit-modal">
+            <div class="modal-content">
+                <h3>Edit Product</h3>
+                <input type="text" id="edit-product-name" placeholder="Edit product name">
+                <div class="modal-buttons">
+                    <button id="update-product-btn">Update</button>
+                    <button class="cancel-btn" onclick="closeModal('edit-modal')">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/product.js') }}"></script>
+</body>
+</html>

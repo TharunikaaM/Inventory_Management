@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INVENTORY REPORT</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/product.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="page">
+        <!-- Header Navigation -->
+        <div class="header-footer">
+            <div class="nav-links">
+                <a href="/" >Manage Products</a> <!-- Current Page -->
+                <a href="/locations">Manage Locations</a>
+                <a href="/movements">Manage Movements</a>
+                <a href="/report"class="active">View Report</a>
+            </div>
+        </div>
+
+        <!-- Title Section -->
+        <div class="title-section">
+            <h1>INVENTORY MANAGEMENT</h1>
+            <h2>REPORT</h2>
+        </div>
+
+        <!-- Report Table -->
+        <div class="report-section">
+            <table id="report-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Location</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- JS Injected Rows -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- JS Script for fetching and displaying data -->
+    <script>
+        $(document).ready(function() {
+            // Fetch report data when the page loads
+            $.ajax({
+                url: '/api/reports/report',  // API endpoint for report
+                method: 'GET',
+                success: function(data) {
+                    // Clear existing table rows
+                    $('#report-table tbody').empty();
+
+                    // Loop through the data and append rows to the table
+                    data.forEach(function(item) {
+                        var row = `<tr>
+                            <td>${item.product}</td>
+                            <td>${item.location}</td>
+                            <td>${item.quantity}</td>
+                        </tr>`;
+                        $('#report-table tbody').append(row);
+                    });
+                },
+                error: function(err) {
+                    console.log('Error fetching report data:', err);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

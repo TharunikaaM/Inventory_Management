@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INVENTORY MANAGEMENT</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/location.css') }}">
+</head>
+<body>
+    <div class="page">
+        <!-- Header Navigation -->
+        <div class="header-footer">
+            <div class="nav-links">
+                <a href="/" >Manage Products</a>
+                <a href="/locations"class="active">Manage Locations</a>
+                <a href="/movements">Manage Movements</a>
+                <a href="/report">View Report</a>
+            </div>
+        </div>
+
+        <!-- Title & Subtitle -->
+        <div class="title-section">
+            <h1>INVENTORY MANAGEMENT</h1>
+            <h2>LOCATIONS</h2>
+        </div>
+
+        <!-- Location Section -->
+        <div class="location-section">
+            <!-- Total Locations Count (above the table) -->
+            <div class="total-display">
+                Total Locations: <span id="total-locations">0</span>
+            </div>
+
+            <!-- Location Table -->
+            <div class="table-container">
+                <table id="location-table">
+                    <thead>
+                        <tr>
+                            <th>Location ID</th>
+                            <th>Location Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- JS Injected Rows -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Floating Add Button (bottom right) -->
+        <button class="add-location-fab" id="open-add-modal">+</button>
+
+        <!-- Add Location Modal -->
+        <div class="modal" id="add-modal">
+            <div class="modal-content">
+                <h3>Add Location</h3>
+                <input type="text" id="add-location-name" placeholder="Enter location name">
+                <div class="modal-buttons">
+                    <button id="add-location-btn">Add</button>
+                    <button class="cancel-btn" onclick="closeModal('add-modal')">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Location Modal -->
+        <div class="modal" id="edit-modal">
+            <div class="modal-content">
+                <h3>Edit Location</h3>
+                <input type="text" id="edit-location-name" placeholder="Edit location name">
+                <div class="modal-buttons">
+                    <button id="update-location-btn">Update</button>
+                    <button class="cancel-btn" onclick="closeModal('edit-modal')">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/location.js') }}"></script>
+</body>
+</html>
